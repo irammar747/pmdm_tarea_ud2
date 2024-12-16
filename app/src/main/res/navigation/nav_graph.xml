@@ -1,0 +1,24 @@
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/nav_home">
+    <!--  Cambia esto al fragmento inicial de tu app  -->
+    <!--  Definición del MainFragment  -->
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.ramirez_marin_inmaculada_pmdm_02.PersonajeListFragment"
+        android:label="Main Fragment">
+        <!--  Agrega aquí las acciones y destinos que se pueden realizar desde el MainFragment si es necesario  -->
+    </fragment>
+    <!--  Definición del GameDetailFragment  -->
+    <fragment
+        android:id="@+id/personajeDetailFragment"
+        android:name="com.example.ramirez_marin_inmaculada_pmdm_02.PersonajeDetailFragment"
+        android:label="Personaje Detail Fragment"/>
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.example.ramirez_marin_inmaculada_pmdm_02.SettingFragment"
+        android:label="fragment_setting" />
+
+</navigation>
