@@ -19,12 +19,21 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.ramirez_marin_inmaculada_pmdm_02.databinding.ActivityMainBinding;
 
+/**
+ * Actividad principal que maneja la navegación, el menú y la interacción con los fragmentos.
+ * Esta actividad utiliza la barra lateral (Drawer) para la navegación entre fragmentos.
+ */
 public class MainActivity extends AppCompatActivity {
 
     private NavController navController;
     private ActionBarDrawerToggle toggle;
     private ActivityMainBinding binding;
 
+    /**
+     * Método que se llama al crear la actividad. Configura la vista, la navegación y los componentes.
+     *
+     * @param savedInstanceState Estado guardado de la actividad.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,12 +64,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método que maneja los cambios de vista en la navegación.
+     * Desactiva el indicador de la hamburguesa en el fragmento de detalles del personaje.
+     *
+     * @param navController Controlador de navegación.
+     * @param navDestination Destino de navegación.
+     * @param bundle Bundle con los datos.
+     */
     private void onChangeView(NavController navController, NavDestination navDestination, Bundle bundle) {
         if(toggle == null)return;
         toggle.setDrawerIndicatorEnabled(navDestination.getId() != R.id.personajeDetailFragment);
         toggle.syncState(); // Actualiza el estado del toggle
     }
 
+    /**
+     * Configura la navegación entre fragmentos al seleccionar elementos del menú lateral.
+     */
     private void configureNavigation() {
         NavigationUI.setupWithNavController(binding.navView, navController);
 
@@ -77,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    /**
+     * Configura el ActionBarDrawerToggle para el menú lateral.
+     */
     private void configureToggleMenu() {
         // Configurar el ActionBarDrawerToggle
         toggle = new ActionBarDrawerToggle(
@@ -91,7 +113,12 @@ public class MainActivity extends AppCompatActivity {
         //setSupportActionBar(binding.toolbar); // Esto ya gestiona el ícono
     }
 
-    // Método para manejar el clic en un juego
+    /**
+     * Maneja el clic en un personaje para mostrar sus detalles.
+     *
+     * @param personaje Objeto de tipo PersonajeData con la información del personaje.
+     * @param view Vista en la que se hizo el clic.
+     */
     public void personajeClicked(PersonajeData personaje, View view) {
 
         // Mostrar el Toast con el nombre del personaje seleccionado
@@ -107,6 +134,11 @@ public class MainActivity extends AppCompatActivity {
         // Navegar al detalle del personaje con el Bundle
         Navigation.findNavController(view).navigate(R.id.personajeDetailFragment, bundle);
     }
+    /**
+     * Maneja la acción de navegación cuando se presiona el icono de la barra de acción.
+     *
+     * @return true si la navegación fue exitosa, false si no.
+     */
     @Override
     public boolean onSupportNavigateUp() {
         if (toggle != null) {
@@ -121,12 +153,24 @@ public class MainActivity extends AppCompatActivity {
         return super.onSupportNavigateUp();
     }
 
+    /**
+     * Crea y muestra el menú de opciones en la ActionBar.
+     *
+     * @param menu Menú que se va a inflar.
+     * @return true si el menú fue inflado correctamente.
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_principal, menu);
         return true;
     }
 
+    /**
+     * Maneja los clics en los elementos del menú de opciones.
+     *
+     * @param item Elemento del menú que fue seleccionado.
+     * @return true si la acción fue manejada, false si no.
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
@@ -142,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+    /**
+     * Muestra un diálogo con información sobre la aplicación.
+     */
     private void showAboutDialog() {
         // Crear un AlertDialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);

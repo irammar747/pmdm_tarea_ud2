@@ -17,11 +17,24 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Fragmento que muestra una lista de personajes en un RecyclerView.
+ * Esta clase maneja la carga de datos y la configuración del RecyclerView,
+ * así como la visualización de un mensaje de bienvenida al cargar la lista.
+ */
 public class PersonajeListFragment extends Fragment {
     private PersonajeListFragmentBinding binding; // Binding para el layout
     private ArrayList<PersonajeData> personajes; // Lista de personajes
     private PersonajeRecyclerViewAdapter adapter; // Adaptador del RecyclerView
 
+    /**
+     * Este método infla el layout para el fragmento usando el binding.
+     *
+     * @param inflater El inflador usado para inflar el layout.
+     * @param container El contenedor en el que el fragmento se colocará.
+     * @param savedInstanceState El estado guardado del fragmento, si existe.
+     * @return La vista raíz inflada del fragmento.
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,6 +43,13 @@ public class PersonajeListFragment extends Fragment {
         return binding.getRoot();
     }
 
+    /**
+     * Este método se ejecuta cuando la vista del fragmento ha sido creada.
+     * Aquí se inicializan los datos y se configura el RecyclerView.
+     *
+     * @param view La vista del fragmento que se ha creado.
+     * @param savedInstanceState El estado guardado del fragmento, si existe.
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -46,7 +66,10 @@ public class PersonajeListFragment extends Fragment {
         Snackbar.make(requireActivity().findViewById(android.R.id.content), R.string.welcome, Snackbar.LENGTH_LONG).show();
     }
 
-    // Método para cargar juegos (puedes implementar tu lógica aquí)
+    /**
+     * Método que carga los datos de los personajes y los agrega a la lista.
+     * Este método crea instancias de la clase PersonajeData con datos de personajes y los agrega a la lista.
+     */
     private void loadData() {
         personajes = new ArrayList<>();
         // Llenar la lista con datos de los personajes
@@ -79,6 +102,10 @@ public class PersonajeListFragment extends Fragment {
         ));
     }
 
+    /**
+     * Este método se ejecuta cuando el fragmento se ha iniciado.
+     * Aquí se configura el título de la ActionBar para este fragmento.
+     */
     @Override
     public void onStart() {
         super.onStart();
